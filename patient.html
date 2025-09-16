@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Patient Dashboard</title>
+  <style>
+    body{font-family:Arial, sans-serif;margin:0;background:#f8fafc;color:#0f172a}
+    header{background:#fff;border-bottom:1px solid #e6edf3;padding:16px;display:flex;justify-content:space-between}
+    .brand{font-weight:bold}
+    .container{max-width:700px;margin:24px auto;padding:16px}
+    .card{background:#fff;border:1px solid #e6edf3;border-radius:10px;padding:16px;margin-bottom:16px}
+    label{font-size:13px;color:#6b7280;display:block;margin-top:8px}
+    input,select{padding:8px;width:100%;border:1px solid #e6edf3;border-radius:8px;margin-top:4px}
+    .btn{background:#2563eb;color:#fff;border:none;border-radius:8px;padding:10px;margin-top:12px;cursor:pointer}
+    ul{list-style:none;padding:0}
+    li{padding:8px;border-bottom:1px dashed #e6edf3}
+    footer{text-align:center;font-size:13px;color:#6b7280;padding:16px}
+  </style>
+</head>
+<body>
+<header>
+  <div class="brand">Patient Dashboard</div>
+  <a href="index.html" class="btn" style="background:#6b7280;text-decoration:none;padding:8px 12px">Logout</a>
+</header>
+
+<main class="container">
+  <div class="card">
+    <h3>Book Appointment</h3>
+    <label>Choose Doctor</label>
+    <select id="doctorSelect">
+      <option>Dr. Priya Reddy — Cardiology</option>
+      <option>Dr. Sameer Khan — General Medicine</option>
+      <option>Dr. Anita Sharma — Pediatrics</option>
+    </select>
+    <label>Date & Time</label>
+    <input type="datetime-local" id="apptDatetime" />
+    <label>Reason</label>
+    <input type="text" id="apptReason" placeholder="brief reason" />
+    <button class="btn" onclick="book()">Book</button>
+  </div>
+
+  <div class="card">
+    <h3>Your Appointments</h3>
+    <ul id="apptList"></ul>
+  </div>
+</main>
+
+<footer>Case Study 4 — Hospital Appointment Scheduler</footer>
+
+<script>
+  function book(){
+    const doc=document.getElementById("doctorSelect").value;
+    const dt=document.getElementById("apptDatetime").value;
+    const reason=document.getElementById("apptReason").value;
+    if(!dt){alert("Choose a date & time");return;}
+    const ul=document.getElementById("apptList");
+    const li=document.createElement("li");
+    li.textContent=`${doc} — ${dt} (${reason||"General"})`;
+    ul.appendChild(li);
+  }
+</script>
+</body>
+</html>
